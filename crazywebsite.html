@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Link Vault</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #4facfe, #00f2fe);
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            overflow: hidden;
+            animation: gradient-bg 10s infinite alternate;
+        }
+
+        @keyframes gradient-bg {
+            0% { background: linear-gradient(135deg, #4facfe, #00f2fe); }
+            25% { background: linear-gradient(135deg, #89f7fe, #66a6ff); }
+            50% { background: linear-gradient(135deg, #ff9a9e, #fad0c4); }
+            75% { background: linear-gradient(135deg, #a18cd1, #fbc2eb); }
+            100% { background: linear-gradient(135deg, #4facfe, #00f2fe); }
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+            transform: scale(0.8);
+            animation: scale-up 0.8s ease-in-out forwards;
+        }
+
+        @keyframes scale-up {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .container h1 {
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 20px;
+            animation: fade-in 1s ease-in-out;
+        }
+
+        @keyframes fade-in {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .input-group input[type="text"],
+        .input-group input[type="password"] {
+            padding: 12px;
+            border: 2px solid #ccc;
+            border-radius: 12px;
+            font-size: 1rem;
+            box-sizing: border-box;
+            transition: transform 0.3s;
+            width: 100%;
+        }
+
+        .input-group input[type="text"]:focus,
+        .input-group input[type="password"]:focus {
+            transform: scale(1.05);
+            border-color: #00f2fe;
+            outline: none;
+        }
+
+        .input-group button {
+            padding: 12px 20px;
+            background: linear-gradient(90deg, #28a745, #218838);
+            color: #fff;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+            border-radius: 12px;
+            transition: background 0.3s, transform 0.3s;
+        }
+
+        .input-group button:hover {
+            background: linear-gradient(90deg, #218838, #1e7e34);
+            transform: scale(1.1);
+        }
+
+        .back-button {
+            margin-top: 10px;
+            padding: 10px 16px;
+            background: linear-gradient(90deg, #ff6347, #e64530);
+            color: #fff;
+            font-weight: bold;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .back-button:hover {
+            background: linear-gradient(90deg, #e64530, #d22f22);
+        }
+
+        .link-list {
+            list-style: none;
+            padding: 0;
+            text-align: left;
+            max-height: 300px;
+            overflow-y: auto;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+        }
+
+        .link-list li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #fff;
+            padding: 10px;
+            margin-bottom: 8px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .link-list li:hover {
+            transform: scale(1.05);
+        }
+
+        .link-list a {
+            color: #007bff;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        .link-list a:hover {
+            color: #0056b3;
+        }
+
+        .link-list button {
+            background: linear-gradient(90deg, #dc3545, #c82333);
+            color: #fff;
+            font-weight: bold;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .link-list button:hover {
+            background: linear-gradient(90deg, #c82333, #bd2130);
+        }
+
+        .username-display {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-weight: bold;
+            font-size: 1.2rem;
+            color: #fff;
+        }
+
+        .password-toggle {
+            position: relative;
+        }
+
+        .password-toggle input {
+            width: calc(100% - 40px);
+            display: inline-block;
+        }
+
+        .password-toggle .toggle-icon {
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            transform: translateY(-50%);
+            cursor: pointer;
+            font-size: 1.2rem;
+            color: #888;
+        }
+
+        footer {
+            margin-top: 20px;
+            font-size: 0.8rem;
+            color: #fff;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+            animation: fade-in 2s ease-in-out;
+        }
+
+        .logout-button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: linear-gradient(90deg, #ff6347, #e64530);
+            color: #fff;
+            font-weight: bold;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .logout-button:hover {
+            background: linear-gradient(90deg, #e64530, #d22f22);
+        }
+    </style>
+</head>
+<body>
+    <div id="login-signup-container" class="container">
+        <h1>Welcome to Secure Link Vault</h1>
+        <div class="input-group">
+            <button id="login-btn">Login</button>
+            <button id="signup-btn">Signup</button>
+        </div>
+    </div>
+
+    <div id="signup-container" class="container" style="display: none;">
+        <h1>Signup</h1>
+        <form id="signup-form" class="input-group">
+            <div class="password-toggle">
+                <input type="text" id="signup-username" placeholder="Username" required>
+            </div>
+            <div class="password-toggle">
+                <input type="password" id="signup-password" placeholder="Password" required>
+                <span class="toggle-icon" id="toggle-signup-password">👁️</span>
+            </div>
+            <button type="submit">Create Account</button>
+        </form>
+        <button class="back-button" id="signup-back">Back</button>
+    </div>
+
+    <div id="login-container" class="container" style="display: none;">
+        <h1>Login</h1>
+        <form id="login-form" class="input-group">
+            <div class="password-toggle">
+                <input type="text" id="login-username" placeholder="Username" required>
+            </div>
+            <div class="password-toggle">
+                <input type="password" id="login-password" placeholder="Password" required>
+                <span class="toggle-icon" id="toggle-login-password">👁️</span>
+            </div>
+            <button type="submit">Login</button>
+        </form>
+        <button class="back-button" id="login-back">Back</button>
+    </div>
+
+    <div id="links-page" class="container" style="display: none;">
+        <div class="username-display" id="username-display"></div>
+        <h1>Your Links</h1>
+        <div class="input-group">
+            <input type="text" id="new-link" placeholder="https://example.com" required>
+            <button type="button" id="add-link">Add Link</button>
+        </div>
+        <ul class="link-list" id="link-list"></ul>
+        <button class="logout-button" id="logout-btn">Logout</button>
+    </div>
+
+    <footer>
+        <p>© 2025 Secure Link Vault | Designed with ❤️</p>
+    </footer>
+
+    <script>
+        const loginSignupContainer = document.getElementById('login-signup-container');
+        const signupContainer = document.getElementById('signup-container');
+        const loginContainer = document.getElementById('login-container');
+        const linksPage = document.getElementById('links-page');
+        const logoutBtn = document.getElementById('logout-btn');
+        const usernameDisplay = document.getElementById('username-display');
+
+        const loginBtn = document.getElementById('login-btn');
+        const signupBtn = document.getElementById('signup-btn');
+        const signupForm = document.getElementById('signup-form');
+        const loginForm = document.getElementById('login-form');
+        const signupBack = document.getElementById('signup-back');
+        const loginBack = document.getElementById('login-back');
+
+        const toggleSignupPassword = document.getElementById('toggle-signup-password');
+        const toggleLoginPassword = document.getElementById('toggle-login-password');
+        const signupPasswordInput = document.getElementById('signup-password');
+        const loginPasswordInput = document.getElementById('login-password');
+
+        const linkList = document.getElementById('link-list');
+        const newLinkInput = document.getElementById('new-link');
+        const addLinkButton = document.getElementById('add-link');
+
+        const users = JSON.parse(localStorage.getItem('users')) || {}; // Persistent storage for user credentials
+        let currentUser = localStorage.getItem('currentUser');
+        const userLinks = JSON.parse(localStorage.getItem('userLinks')) || {};
+
+        if (currentUser) {
+            loginSignupContainer.style.display = 'none';
+            linksPage.style.display = 'block';
+            usernameDisplay.textContent = `Logged in as: ${currentUser}`;
+            loadUserLinks();
+        }
+
+        signupBtn.addEventListener('click', () => {
+            loginSignupContainer.style.display = 'none';
+            signupContainer.style.display = 'block';
+        });
+
+        loginBtn.addEventListener('click', () => {
+            loginSignupContainer.style.display = 'none';
+            loginContainer.style.display = 'block';
+        });
+
+        signupBack.addEventListener('click', () => {
+            signupContainer.style.display = 'none';
+            loginSignupContainer.style.display = 'block';
+        });
+
+        loginBack.addEventListener('click', () => {
+            loginContainer.style.display = 'none';
+            loginSignupContainer.style.display = 'block';
+        });
+
+        signupForm.addEventListener('submit', (event) => {
+            event.preventDefault();
+            const username = document.getElementById('signup-username').value;
+            const password = document.getElementById('signup-password').value;
+            if (username && password) {
+                if (!users[username]) {
+                    users[username] = password;
+                    userLinks[username] = [];
+                    localStorage.setItem('users', JSON.stringify(users));
+                    localStorage.setItem('userLinks', JSON.stringify(userLinks));
+                    signupContainer.style.display = 'none';
+                    loginContainer.style.display = 'block';
+                } else {
+                    alert('Username already exists!');
+                }
+            } else {
+                alert('Please fill in all fields.');
+            }
+        });
+
+        loginForm.addEventListener('submit', (event) => {
+            event.preventDefault();
+            const username = document.getElementById('login-username').value;
+            const password = document.getElementById('login-password').value;
+            if (users[username] && users[username] === password) {
+                currentUser = username;
+                localStorage.setItem('currentUser', currentUser);
+                loginContainer.style.display = 'none';
+                linksPage.style.display = 'block';
+                usernameDisplay.textContent = `Logged in as: ${currentUser}`;
+                loadUserLinks();
+            } else {
+                alert('Invalid credentials. Please try again.');
+            }
+        });
+
+        logoutBtn.addEventListener('click', () => {
+            currentUser = null;
+            localStorage.removeItem('currentUser');
+            linksPage.style.display = 'none';
+            loginSignupContainer.style.display = 'block';
+        });
+
+        addLinkButton.addEventListener('click', () => {
+            const newLink = newLinkInput.value.trim();
+            if (newLink && currentUser) {
+                userLinks[currentUser].push(newLink);
+                localStorage.setItem('userLinks', JSON.stringify(userLinks));
+                const listItem = createLinkItem(newLink);
+                linkList.appendChild(listItem);
+                newLinkInput.value = '';
+            }
+        });
+
+        newLinkInput.addEventListener('keypress', (event) => {
+            if (event.key === 'Enter') {
+                addLinkButton.click();
+            }
+        });
+
+        toggleSignupPassword.addEventListener('click', () => {
+            if (signupPasswordInput.type === 'password') {
+                signupPasswordInput.type = 'text';
+                toggleSignupPassword.textContent = '🙈';
+            } else {
+                signupPasswordInput.type = 'password';
+                toggleSignupPassword.textContent = '👁️';
+            }
+        });
+
+        toggleLoginPassword.addEventListener('click', () => {
+            if (loginPasswordInput.type === 'password') {
+                loginPasswordInput.type = 'text';
+                toggleLoginPassword.textContent = '🙈';
+            } else {
+                loginPasswordInput.type = 'password';
+                toggleLoginPassword.textContent = '👁️';
+            }
+        });
+
+        function loadUserLinks() {
+            linkList.innerHTML = '';
+            if (currentUser && userLinks[currentUser]) {
+                userLinks[currentUser].forEach(link => {
+                    const listItem = createLinkItem(link);
+                    linkList.appendChild(listItem);
+                });
+            }
+        }
+
+        function createLinkItem(link) {
+            const listItem = document.createElement('li');
+            const linkAnchor = document.createElement('a');
+            linkAnchor.href = link;
+            linkAnchor.textContent = link;
+            linkAnchor.target = '_blank';
+            const deleteButton = document.createElement('button');
+            deleteButton.textContent = 'Delete';
+            deleteButton.addEventListener('click', () => {
+                userLinks[currentUser] = userLinks[currentUser].filter(l => l !== link);
+                localStorage.setItem('userLinks', JSON.stringify(userLinks));
+                listItem.remove();
+            });
+            listItem.appendChild(linkAnchor);
+            listItem.appendChild(deleteButton);
+            return listItem;
+        }
+    </script>
+</body>
+</html>
