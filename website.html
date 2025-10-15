@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<style type="text/tailwindcss">
+      @keyframes slide-in {
+        from {
+          transform: translateY(20px);
+          opacity: 0;
+        }
+        to {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+      .animate-slide-in {
+        animation: slide-in 0.8s ease-out forwards;
+      }
+      @keyframes fade-in {
+        from { opacity: 0; }
+        to { opacity: 1; }
+      }
+      .animate-fade-in {
+        animation: fade-in 1.2s ease-out forwards;
+      }
+      .rangoli-bg {
+        background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"%3E%3Cg fill="%232c3e50" fill-opacity="0.05"%3E%3Crect x="0" y="0" width="100" height="100"/%3E%3Cg transform="translate(50 50)"%3E%3Cpath d="M0 0 L10 10 L0 20 L-10 10 Z"/%3E%3Cpath d="M0 0 L10 -10 L0 -20 L-10 -10 Z"/%3E%3Cpath d="M0 0 L20 0 L30 10 L20 20 L10 20 L0 10 Z"/%3E%3Cpath d="M0 0 L-20 0 L-30 -10 L-20 -20 L-10 -20 L0 -10 Z"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');
+      }
+      .scrollbar-hide::-webkit-scrollbar {
+          display: none;
+      }
+      .scrollbar-hide {
+          -ms-overflow-style: none;  
+          scrollbar-width: none;  
+      }
+    </style>
+<script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#ef8206",
+              "background-light": "#f8f7f5",
+              "background-dark": "#231a0f",
+              "kalamkari-indigo": "#2c3e50",
+              "zari-gold": "#d4af37",
+              "deep-marigold": "#ffbf00",
+              "emerald-green": "#28a745"
+            },
+            fontFamily: {
+              "display": ["Work Sans"],
+              "secondary": ["Kalam", "cursive"]
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+            },
+          },
+        },
+      };
+    </script>
+<title>BharatHaat</title>
+<link href="data:image/x-icon;base64," rel="icon" type="image/x-icon"/>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display">
+<div class="relative flex min-h-screen w-full flex-col">
+<header class="w-full bg-kalamkari-indigo text-white shadow-lg z-10">
+<div class="container mx-auto flex items-center justify-between px-6 py-3">
+<div class="flex items-center gap-2">
+<svg class="text-zari-gold" fill="none" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 2L2 7V17L12 22L22 17V7L12 2Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+<path d="M2 7L12 12L22 7" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+<path d="M12 22V12" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<h1 class="text-2xl font-bold text-zari-gold">BharatHaat</h1>
+</div>
+<nav class="hidden md:flex items-center justify-center flex-1">
+<a class="px-4 py-2 text-sm font-medium text-white hover:text-zari-gold transition-colors" href="#">Sarees</a>
+<a class="px-4 py-2 text-sm font-medium text-white hover:text-zari-gold transition-colors" href="#">Pottery</a>
+<a class="px-4 py-2 text-sm font-medium text-white hover:text-zari-gold transition-colors" href="#">Spices</a>
+<a class="px-4 py-2 text-sm font-medium text-white hover:text-zari-gold transition-colors" href="#">Home Decor</a>
+</nav>
+<div class="flex items-center gap-4">
+<div class="relative hidden sm:block">
+<input class="bg-white/10 text-white placeholder-white/60 rounded-full py-2 pl-10 pr-4 focus:outline-none focus:ring-2 focus:ring-zari-gold transition-all w-48" placeholder="Search..." type="text"/>
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+<svg class="text-zari-gold" fill="currentColor" height="20" viewBox="0 0 256 256" width="20" xmlns="http://www.w3.org/2000/svg">
+<path d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z"></path>
+</svg>
+</div>
+</div>
+<button class="text-white hover:text-zari-gold transition-colors">
+<svg fill="currentColor" height="20" viewBox="0 0 256 256" width="20" xmlns="http://www.w3.org/2000/svg">
+<path d="M230.92,212c-15.23-26.33-38.7-45.21-66.09-54.16a72,72,0,1,0-73.66,0C63.78,166.78,40.31,185.66,25.08,212a8,8,0,1,0,13.85,8c18.84-32.56,52.14-52,89.07-52s70.23,19.44,89.07,52a8,8,0,1,0,13.85-8ZM72,96a56,56,0,1,1,56,56A56.06,56.06,0,0,1,72,96Z"></path>
+</svg>
+</button>
+</div>
+</div>
+<div 0="" 120="" 120\'="" 2.5-6="" 4c2.5="" 5="" 5-6h120\'="" 5-6s2.5="" 6="" 6s2.5-6="" 8\'="" class="h-2 w-full bg-repeat-x bg-center" d="\'M0" fill="\'none\'" height="\'8\'" stroke="\'%23d4af37\'" stroke-width="\'1.5\'/%3E%3C/svg%3E&quot;)'" style='background-image: url("data:image/svg+xml,%3Csvg width=\' viewbox="\'0" xmlns="\'http://www.w3.org/2000/svg\'%3E%3Cpath"></div>
+</header>
+<main class="flex-grow">
+<section class="relative h-[70vh] min-h-[500px] w-full overflow-hidden">
+<div class="absolute inset-0 bg-cover bg-center animate-fade-in" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBfNoyJ8BUjEaWc83ANpWXk1XCGbukFPRSXZZ7XxsCkHdQq_0T1pZYwtv6R7ZF0RSFCphNc1qaDHXPFAirUCL5q2klamCxLjg6lXCzkn7l2fvzByNuSkgEM7eY1PigvXA9A-cdVlt_v9lcrUJ6FuZDxjh_HJKJHl5u29qhxt_BAV-EEYXhNmzWPSFVtjyHny7L0W4LqF_kaOwf8c6PH76ypWOUB5TSXh2LM7QWCH3_liGHqFkD5qd0G28MqbfO9C43kIwz1DpI4Vw2U"); will-change: transform; animation: kenburns 20s ease-in-out infinite alternate;'></div>
+<div class="absolute inset-0 bg-kalamkari-indigo/70 flex items-center justify-center">
+<div class="text-center text-white p-8 animate-slide-in">
+<h2 class="text-5xl lg:text-7xl font-bold text-zari-gold drop-shadow-lg" style="animation-delay: 0.2s;">Artistry in Every Thread</h2>
+<p class="mt-4 max-w-2xl text-lg text-white/90 animate-slide-in" style="animation-delay: 0.4s;">Discover handcrafted textiles that tell a story of tradition and elegance.</p>
+<button class="mt-8 bg-zari-gold text-kalamkari-indigo font-bold py-3 px-8 rounded-lg hover:bg-zari-gold/90 transition-all transform hover:scale-105 animate-slide-in" style="animation-delay: 0.6s;">Explore Collections</button>
+</div>
+</div>
+<div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+<div class="h-2 w-4 rounded-full bg-white transition-all duration-300"></div>
+<div class="h-2 w-2 rounded-full bg-white/50 transition-all duration-300"></div>
+<div class="h-2 w-2 rounded-full bg-white/50 transition-all duration-300"></div>
+<div class="h-2 w-2 rounded-full bg-white/50 transition-all duration-300"></div>
+<div class="h-2 w-2 rounded-full bg-white/50 transition-all duration-300"></div>
+</div>
+</section>
+<section class="py-16 sm:py-24 bg-background-light dark:bg-background-dark">
+<div class="container mx-auto px-6">
+<div class="text-center mb-8">
+<h2 class="text-4xl font-secondary font-bold text-kalamkari-indigo dark:text-zari-gold/90 inline-block relative pb-2">
+Trending Products
+<span class="absolute bottom-0 left-1/2 -translate-x-1/2 w-2/3 h-1 bg-zari-gold"></span>
+</h2>
+</div>
+<div class="flex justify-center flex-wrap gap-2 sm:gap-4 mb-12">
+<button class="bg-deep-marigold text-kalamkari-indigo font-semibold py-2 px-5 rounded-full text-sm transition-all duration-300 shadow-md">All Regions</button>
+<button class="bg-white dark:bg-kalamkari-indigo/30 text-kalamkari-indigo dark:text-white/80 font-semibold py-2 px-5 rounded-full text-sm hover:bg-deep-marigold/80 hover:text-kalamkari-indigo transition-all duration-300 shadow-sm hover:shadow-md">North</button>
+<button class="bg-white dark:bg-kalamkari-indigo/30 text-kalamkari-indigo dark:text-white/80 font-semibold py-2 px-5 rounded-full text-sm hover:bg-deep-marigold/80 hover:text-kalamkari-indigo transition-all duration-300 shadow-sm hover:shadow-md">South</button>
+<button class="bg-white dark:bg-kalamkari-indigo/30 text-kalamkari-indigo dark:text-white/80 font-semibold py-2 px-5 rounded-full text-sm hover:bg-deep-marigold/80 hover:text-kalamkari-indigo transition-all duration-300 shadow-sm hover:shadow-md">East</button>
+<button class="bg-white dark:bg-kalamkari-indigo/30 text-kalamkari-indigo dark:text-white/80 font-semibold py-2 px-5 rounded-full text-sm hover:bg-deep-marigold/80 hover:text-kalamkari-indigo transition-all duration-300 shadow-sm hover:shadow-md">West</button>
+</div>
+<div class="relative">
+<div class="flex space-x-8 overflow-x-auto pb-8 scrollbar-hide">
+<div class="flex-shrink-0 w-80 group">
+<div class="relative overflow-hidden rounded-lg shadow-md bg-white dark:bg-kalamkari-indigo/20 rangoli-bg transition-all duration-300 hover:shadow-zari-gold/20 hover:shadow-2xl">
+<div class="absolute top-3 left-3 z-10 bg-emerald-green text-white text-xs font-bold px-3 py-1 rounded-full">TRENDING</div>
+<img alt="Handwoven Banarasi Silk Saree" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBi4yzRV0Ro4Ww0yEDt1vT1H1hJgtCo5u20olCwsCZJ7PjtTr2x6W3ypj2YPngj2-itGozS8yX_cI0EzjRBKWOYbgfV5HXgYZl5D2AF1F8WzD3jtsb2O7eTrLMgZiFSqlBVxmMjZU9VLak09Q-pfq_rQuV_KpEbrR03x79mexFyNqyCaN_T5nuIhZ7SyH_C_EE0yKV8_Mxq4nJ6Jww7D8EJoOxV6cVViZlUK4AsCO8LjsgHrS853gaD0yimOgJ4ls6a7YLsghiGVscR"/>
+<div class="p-4">
+<h3 class="text-lg font-semibold text-kalamkari-indigo dark:text-white">Banarasi Silk Saree</h3>
+<p class="text-sm text-gray-600 dark:text-gray-400">Royal Blue &amp; Gold</p>
+<p class="mt-2 text-xl font-bold text-kalamkari-indigo dark:text-zari-gold">₹12,500</p>
+</div>
+<div class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+<button class="border-2 border-zari-gold text-zari-gold font-bold py-2 px-6 rounded-md hover:bg-zari-gold hover:text-kalamkari-indigo transition-colors">View Details</button>
+</div>
+</div>
+</div>
+<div class="flex-shrink-0 w-80 group">
+<div class="relative overflow-hidden rounded-lg shadow-md bg-white dark:bg-kalamkari-indigo/20 rangoli-bg transition-all duration-300 hover:shadow-zari-gold/20 hover:shadow-2xl">
+<div class="absolute top-3 left-3 z-10 bg-emerald-green text-white text-xs font-bold px-3 py-1 rounded-full">TRENDING</div>
+<img alt="Pattachitra Painted Kettle" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDdRdCl2TVgEW8_4eBsg-YTJgdf7SiaWlw7iq0wJxnKkHqd3aGbWzFNMVxDMHE8lIN-R7GwbnYM1BVDF_ToGR2BHz5dAT4CVOTer0rS6Xusl_lWAL-BP9-1EaWWJid0XkyRPBqW8n1OOfqUmwNQB2Sj2aMw1S0lpWXS6BdhvuD70m2YiC2npM7qLKcHDP-wvagNfCdyarKhvL8juURN9UX4yHBjCR6NBPCERwayXNQa7INE6SnEwkFMh08J55rOcdfrG-Ehvm0-mCDo"/>
+<div class="p-4">
+<h3 class="text-lg font-semibold text-kalamkari-indigo dark:text-white">Pattachitra Kettle</h3>
+<p class="text-sm text-gray-600 dark:text-gray-400">Hand-painted Aluminium</p>
+<p class="mt-2 text-xl font-bold text-kalamkari-indigo dark:text-zari-gold">₹3,200</p>
+</div>
+<div class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+<button class="border-2 border-zari-gold text-zari-gold font-bold py-2 px-6 rounded-md hover:bg-zari-gold hover:text-kalamkari-indigo transition-colors">View Details</button>
+</div>
+</div>
+</div>
+<div class="flex-shrink-0 w-80 group">
+<div class="relative overflow-hidden rounded-lg shadow-md bg-white dark:bg-kalamkari-indigo/20 rangoli-bg transition-all duration-300 hover:shadow-zari-gold/20 hover:shadow-2xl">
+<div class="absolute top-3 left-3 z-10 bg-emerald-green text-white text-xs font-bold px-3 py-1 rounded-full">TRENDING</div>
+<img alt="Kashmiri Pashmina Shawl" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBEU8L_vI9EPivRwCO_dUXqgBeSbb0R-8obhqG4yuL8yC4e-362ZFWRXRs7O-y8vxGeyiFy8U5_X5AWECKkMjeA6vL4GwvR_tuh3Q6d3Aaj81WcbO8MH1-zKVV13fVEChSWKFzJQ2CkML9mSTJ9VqTocdIJVuQzrUwYkENgwuQDfgzURG0bXvFO8h2BmWbj3rA6gjdND19ba42X45V1YqC5ebEEbopZ-sJG-Cu7XtWY0F6UILddyPsC0dRZvhl8OfkmqHm8vTFigPxk"/>
+<div class="p-4">
+<h3 class="text-lg font-semibold text-kalamkari-indigo dark:text-white">Pashmina Shawl</h3>
+<p class="text-sm text-gray-600 dark:text-gray-400">Embroidered Wool</p>
+<p class="mt-2 text-xl font-bold text-kalamkari-indigo dark:text-zari-gold">₹8,999</p>
+</div>
+<div class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+<button class="border-2 border-zari-gold text-zari-gold font-bold py-2 px-6 rounded-md hover:bg-zari-gold hover:text-kalamkari-indigo transition-colors">View Details</button>
+</div>
+</div>
+</div>
+<div class="flex-shrink-0 w-80 group">
+<div class="relative overflow-hidden rounded-lg shadow-md bg-white dark:bg-kalamkari-indigo/20 rangoli-bg transition-all duration-300 hover:shadow-zari-gold/20 hover:shadow-2xl">
+<div class="absolute top-3 left-3 z-10 bg-emerald-green text-white text-xs font-bold px-3 py-1 rounded-full">TRENDING</div>
+<img alt="Jaipuri Blue Pottery Mugs" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDPcJ4h7nAvqtK_ApAzXyiT3_vm7k6ADnoD7g8-9uTZn4FnGhW_eagN6bZU96Rgtg0qxeHyywinJEIXIT8WUWF5KkhyrUUdMh5fd0gpYEwyxLMtrUvEs2Y3-pQtxjwjhot0f2I5oWdTmkFpg3DuYURrra_5oLnY87c613rrjrG-mNOyfzsjKBzpyDkesnfXuVr5z2vISOwQst8yYSwnnxJLvcS1tmqZXBCktuqOgnxefJVY-AOB8TwRH9hnfcvBZbvnxp8ywd85UhQu"/>
+<div class="p-4">
+<h3 class="text-lg font-semibold text-kalamkari-indigo dark:text-white">Blue Pottery Mugs</h3>
+<p class="text-sm text-gray-600 dark:text-gray-400">Set of Two, Ceramic</p>
+<p class="mt-2 text-xl font-bold text-kalamkari-indigo dark:text-zari-gold">₹1,500</p>
+</div>
+<div class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+<button class="border-2 border-zari-gold text-zari-gold font-bold py-2 px-6 rounded-md hover:bg-zari-gold hover:text-kalamkari-indigo transition-colors">View Details</button>
+</div>
+</div>
+</div>
+</div>
+<button class="absolute top-1/2 -translate-y-1/2 -left-4 bg-white/80 dark:bg-kalamkari-indigo/80 p-2 rounded-full shadow-lg text-kalamkari-indigo dark:text-zari-gold hover:bg-white dark:hover:bg-kalamkari-indigo transition-all">
+<svg class="feather feather-chevron-left" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><polyline points="15 18 9 12 15 6"></polyline></svg>
+</button>
+<button class="absolute top-1/2 -translate-y-1/2 -right-4 bg-white/80 dark:bg-kalamkari-indigo/80 p-2 rounded-full shadow-lg text-kalamkari-indigo dark:text-zari-gold hover:bg-white dark:hover:bg-kalamkari-indigo transition-all">
+<svg class="feather feather-chevron-right" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><polyline points="9 18 15 12 9 6"></polyline></svg>
+</button>
+</div>
+</div>
+</section>
+<section class="py-20 sm:py-32 bg-kalamkari-indigo/5 dark:bg-kalamkari-indigo/10 rangoli-bg">
+<div class="container mx-auto px-6">
+<div class="text-center mb-16">
+<h2 class="text-4xl lg:text-5xl font-secondary font-bold text-kalamkari-indigo dark:text-zari-gold/90 inline-block relative pb-4">
+Explore the Heart of India
+<span class="absolute bottom-0 left-1/2 -translate-x-1/2 w-1/2 h-1 bg-zari-gold"></span>
+</h2>
+<p class="mt-4 max-w-3xl mx-auto text-lg text-gray-600 dark:text-gray-400">
+Journey through the diverse cultural landscapes of India. Click on a region to discover its unique artistic treasures.
+</p>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 md:gap-8">
+<a class="group relative flex flex-col items-center gap-4 text-center cursor-pointer" href="#">
+<div class="w-36 h-36 lg:w-44 lg:h-44 transition-all duration-300 transform group-hover:scale-105">
+<div class="absolute inset-0 rounded-full bg-cover bg-center shadow-lg group-hover:shadow-2xl group-hover:shadow-deep-marigold/30 transition-all duration-300" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBonRG03FN8iyiqVAnHcWJofwLN_0KEfP_ad5J3wIdVQyg2Z8BmRjpfL21Pzv-klCylSiTB9XDtg8Rp1KVssmqSthsfB9KkYQEHdaafESzf5yqFknS0pdg9a4XKJi3rLmRLgvWs_JlYj2XMh25HEcf16BsX3WmMSEj13x4u00sCpyBkf5oRIGtlvV7svF2E6Y_-6mkbMVb3bU_UfAu4OnYrqN3uU16prWgdwlrZe6euNIwmaB_IVzIIoaOzi54jybbIXibz7_6c33sj");'></div>
+<div class="absolute inset-0 rounded-full bg-kalamkari-indigo/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center p-4">
+<h3 class="font-bold text-deep-marigold text-2xl drop-shadow-md">Kashmir</h3>
+<p class="text-white text-sm font-medium mt-1 opacity-0 group-hover:opacity-100 transition-opacity duration-200 delay-100">Pashmina Shawls</p>
+</div>
+</div>
+</a>
+<a class="group relative flex flex-col items-center gap-4 text-center cursor-pointer" href="#">
+<div class="w-36 h-36 lg:w-44 lg:h-44 transition-all duration-300 transform group-hover:scale-105">
+<div class="absolute inset-0 rounded-full bg-cover bg-center shadow-lg group-hover:shadow-2xl group-hover:shadow-deep-marigold/30 transition-all duration-300" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuD_JgKEkmd9N9WLC3_k9aN2bDVQPNYdphjVnuYsWy9QiOhOlbJcWysZ3_8OioLGOf5eCmNjXDaY1H4Rs0_LkRBwltbHI_8YPK8O3GaebzGoYJBUqVS93Yrjv-bmVFJSlIdoU3_ezFAQHeTckoQDWR4rmL2I1_WzuQwWdrEWJnInRSeM6XKQ9H92VEyKfVjyvG8lWcwbmf8LdkaiJxSASHU_Z3zSZyMGtqSBMABAVpMNOov72FzZ3QnN_tHZaJn-tLzksIF1Y0BlHVl3");'></div>
+<div class="absolute inset-0 rounded-full bg-kalamkari-indigo/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center p-4">
+<h3 class="font-bold text-deep-marigold text-2xl drop-shadow-md">Rajasthan</h3>
+<p class="text-white text-sm font-medium mt-1 opacity-0 group-hover:opacity-100 transition-opacity duration-200 delay-100">Miniature Paintings</p>
+</div>
+</div>
+</a>
+<a class="group relative flex flex-col items-center gap-4 text-center cursor-pointer" href="#">
+<div class="w-36 h-36 lg:w-44 lg:h-44 transition-all duration-300 transform group-hover:scale-105">
+<div class="absolute inset-0 rounded-full bg-cover bg-center shadow-lg group-hover:shadow-2xl group-hover:shadow-deep-marigold/30 transition-all duration-300" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAcQU6J8tMuRMX00xeOcq1u9AmeOSUqlZhDVTrMFPpuTe9xCE9O328mwzPtyx2MO-mM8vu9A2DtEJNYAz_8EYuEq7xRDZNVazc_OK7qkr6VVEozcysdO7VYvZxRlSfDJbpn6nyM7K1GA5iqhuHMRgbZWrCKA40wkVW8RCbedl1mHoSe9fQMdcnJOC7D_-7d4_tBnke1upp_utRuD9zznuDGfjtcrcaPWGPsZAZMe_MtMm8YtZanZygVHJByPqmDTg7-axwjUwEM9GMq");'></div>
+<div class="absolute inset-0 rounded-full bg-kalamkari-indigo/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center p-4">
+<h3 class="font-bold text-deep-marigold text-2xl drop-shadow-md">Gujarat</h3>
+<p class="text-white text-sm font-medium mt-1 opacity-0 group-hover:opacity-100 transition-opacity duration-200 delay-100">Bandhani Sarees</p>
+</div>
+</div>
+</a>
+<a class="group relative flex flex-col items-center gap-4 text-center cursor-pointer" href="#">
+<div class="w-36 h-36 lg:w-44 lg:h-44 transition-all duration-300 transform group-hover:scale-105">
+<div class="absolute inset-0 rounded-full bg-cover bg-center shadow-lg group-hover:shadow-2xl group-hover:shadow-deep-marigold/30 transition-all duration-300" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAKMG7xRSLo2wF-kfwZG2R1CVadKThY1AlTAojqMIn9FWaSfLeilOlfeLriL0TdzFbK3D2WQyHnKWy9SVkkzFE2XeU-s19jQK5QPmhnFmjt7ynKZGkn7tap--AlSW0Zk1dgUERyYS1ljSPjoHuUGCVT5o7OSHM-RJbBEwtXFY4ftuSxfSAL7UNPhsF3G5SOCI1vzaGGcpokEoRIEpabYNqYn0r-ojh6k7DfysIsxLwUqxygstOjJUMngjig3I0BbEjXSfhyDWHd_6_M");'></div>
+<div class="absolute inset-0 rounded-full bg-kalamkari-indigo/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center p-4">
+<h3 class="font-bold text-deep-marigold text-2xl drop-shadow-md">Bengal</h3>
+<p class="text-white text-sm font-medium mt-1 opacity-0 group-hover:opacity-100 transition-opacity duration-200 delay-100">Kantha Embroidery</p>
+</div>
+</div>
+</a>
+<a class="group relative flex flex-col items-center gap-4 text-center cursor-pointer" href="#">
+<div class="w-36 h-36 lg:w-44 lg:h-44 transition-all duration-300 transform group-hover:scale-105">
+<div class="absolute inset-0 rounded-full bg-cover bg-center shadow-lg group-hover:shadow-2xl group-hover:shadow-deep-marigold/30 transition-all duration-300" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDOrB_btmsc_QjBQxWNK--b3sAaQi7rQFSWR4ltvGNzsJHUTNivG6v5eKwxW91YJ1PdoD5qgiJd_q-TOLYTblfZ46eeaON8Kk_JvE96_eGvrrf4tQc1P7u-QIL7kZYoq6MuCs4foo6L2fccGT6VVh8xie2feeJUu3lYltZ0tdQxnPd8JLbZLEWh5_FTAJ3Ezub9m1ipGgD937ZJOW3TTwG_XGp3apeCuuptRqa5eMfC-sw9_tVMxJnzpyz9sWIVwd5bC39ROv_15Uq6");'></div>
+<div class="absolute inset-0 rounded-full bg-kalamkari-indigo/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center p-4">
+<h3 class="font-bold text-deep-marigold text-2xl drop-shadow-md">Tamil Nadu</h3>
+<p class="text-white text-sm font-medium mt-1 opacity-0 group-hover:opacity-100 transition-opacity duration-200 delay-100">Kanjeevaram Silk</p>
+</div>
+</div>
+</a>
+<a class="group relative flex flex-col items-center gap-4 text-center cursor-pointer" href="#">
+<div class="w-36 h-36 lg:w-44 lg:h-44 transition-all duration-300 transform group-hover:scale-105">
+<div class="absolute inset-0 rounded-full bg-cover bg-center shadow-lg group-hover:shadow-2xl group-hover:shadow-deep-marigold/30 transition-all duration-300" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuD3uxbtlgy8WqBiJS9SdkVFn5ILai2HrFMisQcjuPAQ3SmlJgNMGtUB37t65jHA4jnMMkINgSQxSpQ_xOTfWt43TT86K8Ut5qnuJ-pozKZiVSB6M55zI11ctQah1xtzf1iSBEyHpm1cIvK3O_qPYs_3yswanKiZDqiH5NZ6MW7UqEeKO_aBnnCzvjElHHbr-7zjl3qmFlvkFnKEt18AqBy_WbCTiB_qQ_8uvc5VAxVS4U2TfAMcc0VSJjBSWpB02yu8OZgZoyaSWjtP");'></div>
+<div class="absolute inset-0 rounded-full bg-kalamkari-indigo/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center p-4">
+<h3 class="font-bold text-deep-marigold text-2xl drop-shadow-md">Odisha</h3>
+<p class="text-white text-sm font-medium mt-1 opacity-0 group-hover:opacity-100 transition-opacity duration-200 delay-100">Pattachitra Art</p>
+</div>
+</div>
+</a>
+</div>
+</div>
+</section>
+</main>
+</div>
+</body></html>
